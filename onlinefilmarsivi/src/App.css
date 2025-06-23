@@ -1,0 +1,27 @@
+.my-navbar {
+  background-color: #000000 !important;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.my-navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #f1c40f !important; /* Sarı vurgulu başlık */
+}
+
+.my-navbar .nav-link {
+  color: #ffffff !important;
+}
+
+.my-navbar .nav-link:hover {
+  color: #f1c40f !important;
+}
+.my-footer {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 1rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+}

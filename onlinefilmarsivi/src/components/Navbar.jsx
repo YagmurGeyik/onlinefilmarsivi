@@ -3,9 +3,9 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 
 function NavigationBar() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+   <Navbar className="my-navbar" expand="lg">
       <Container>
-        <Navbar.Brand href="#">Online Film Arşivi</Navbar.Brand>
+        <Navbar.Brand href="#">CineLİST</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
