@@ -1,17 +1,27 @@
 import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
-function NavigationBar() {
+function NavigationBar({ searchTerm, setSearchTerm }) {
   return (
-   <Navbar className="my-navbar" expand="lg">
+    <Navbar className="my-navbar" bg="dark" variant="dark" expand="lg" collapseOnSelect>
       <Container>
-        <Navbar.Brand href="#">CineLİST</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Brand href="#">Online Film Arşivi</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-content" className="ms-auto" />
+        <Navbar.Collapse id="navbar-content" className="justify-content-between">
           <Nav className="me-auto">
             <Nav.Link href="#">Anasayfa</Nav.Link>
             <Nav.Link href="#">Favoriler</Nav.Link>
           </Nav>
+          <Form className="d-flex search-form mx-auto w-100">
+            <FormControl
+              type="search"
+              placeholder="Film Ara..."
+              className="me-2"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Button variant="outline-light">Ara</Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

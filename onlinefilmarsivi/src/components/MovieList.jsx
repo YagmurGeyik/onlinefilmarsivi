@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MovieList({ movies }) {
+function MovieList({ movies, handleAddFavorite }) {
   return (
     <div className="row">
       {movies.map(movie => (
@@ -11,7 +11,15 @@ function MovieList({ movies }) {
               <h5 className="card-title">{movie.title}</h5>
               <p className="card-text">Yıl: {movie.year}</p>
               <p className="card-text">IMDB: {movie.imdbRating}</p>
-              <button className="btn btn-primary">Detay</button>
+              <div className="d-flex justify-content-between">
+                <button className="btn btn-primary">Detay</button>
+                <button
+                  className="btn btn-warning"
+                  onClick={() => handleAddFavorite(movie)}
+                >
+                  Favori Ekle
+                </button>
+              </div>
             </div>
           </div>
         </div>
