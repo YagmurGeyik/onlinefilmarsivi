@@ -5,7 +5,7 @@ function NavigationBar({ searchTerm, setSearchTerm }) {
   return (
     <Navbar className="my-navbar" bg="dark" variant="dark" expand="lg" collapseOnSelect>
       <Container>
-        <Navbar.Brand href="#">Online Film Arşivi</Navbar.Brand>
+        <Navbar.Brand href="#">CineLİST</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-content" className="ms-auto" />
         <Navbar.Collapse id="navbar-content" className="justify-content-between">
           <Nav className="me-auto">
