@@ -1,10 +1,10 @@
-import React from 'react';
-import '../styles/MovieList.css';
+import React from "react";
+import "../styles/MovieList.css";
 
 function MovieList({ movies, handleAddFavorite }) {
   return (
     <div className="row">
-      {movies.map(movie => (
+      {movies.map((movie) => (
         <div key={movie.id} className="col-6 col-sm-4 col-md-2 mb-4">
           <div className="card h-100 movie-card">
             <img
