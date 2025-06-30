@@ -1,9 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import moviesData from './data/movies';
 import MovieList from './components/MovieList';
-import NavigationBar from './components/Navbar';
+import MovieDetail from './components/MovieDetail';
 import Footer from './components/Footer';
+import NavigationBar from './components/NavBar';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,18 +27,36 @@ function App() {
   );
 
   return (
-    <>
+    <BrowserRouter basename="/onlinefilmarsivi">
       <NavigationBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="container my-4">
-       <div className="row">
-        <div className="col-12">
-         <MovieList movies={filteredMovies} handleAddFavorite={handleAddFavorite} />
-    </div>
-  </div>
-</div>
-
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MovieList
+                movies={filteredMovies}
+                handleAddFavorite={handleAddFavorite}
+              />
+            }
+          />
+          <Route
+            path="/movies/:id"
+            element={<MovieDetail movies={moviesData} />}
+          />
+          <Route
+            path="*"
+            element={
+              <MovieList
+                movies={filteredMovies}
+                handleAddFavorite={handleAddFavorite}
+              />
+            }
+          />
+        </Routes>
+      </div>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 
