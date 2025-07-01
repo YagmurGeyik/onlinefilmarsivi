@@ -29,6 +29,8 @@ function MovieDetail() {
           <p><strong>Tür:</strong> {movie.genre}</p>
           <p><strong>Ülke:</strong> {movie.country}</p>
           <p><strong>Süre:</strong> {movie.duration}</p>
+          <p><strong>Yönetmen:</strong> {movie.director}</p>
+          <p><strong>Oyuncular:</strong> {movie.cast.join(', ')}</p>
           <p><strong>Özet:</strong> {movie.description}</p>
         </div>
       </div>
