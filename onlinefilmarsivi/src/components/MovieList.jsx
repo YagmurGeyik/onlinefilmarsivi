@@ -18,20 +18,21 @@ function MovieList({ movies, handleAddFavorite }) {
               <p className="card-text movie-info">Tür: {movie.genre}</p>
               <p className="card-text movie-info">Yıl: {movie.year}</p>
               <p className="card-text movie-info">IMDB: {movie.imdbRating}</p>
-              <div className="d-flex justify-content-between mt-auto">
-                <Link
-                  to={`/movies/${movie.id}`}
-                  className="btn btn-primary btn-sm btn-responsive"
-                >
-                  Detay
-                </Link>
-                <button
-                  className="btn btn-warning btn-sm btn-responsive"
-                  onClick={() => handleAddFavorite(movie)}
-                >
-                  Favori Ekle
-                </button>
-              </div>
+             <div className="movie-card-buttons mt-auto">
+  <Link
+    to={`/movies/${movie.id}`}
+    className="btn btn-primary"
+  >
+    Detay
+  </Link>
+  <button
+    className="btn btn-warning"
+    onClick={() => handleAddFavorite(movie)}
+  >
+    Favori Ekle
+  </button>
+</div>
+
             </div>
           </div>
         </div>

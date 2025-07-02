@@ -141,3 +141,51 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   border: 1px solid #ffc107; /* opsiyonel: sarı kenar çizgisi */
 }
+/* BUTON GRUBU: Detay & Favori Ekle arası boşluk ve responsive tasarım */
+.movie-card-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Butonlar arasında boşluk */
+  margin-top: 0.6rem;
+}
+
+.movie-card-buttons .btn {
+  flex: 1 1 auto;
+  min-width: 100px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+/* Mobil uyumlu ekstra ayarlar */
+@media (max-width: 576px) {
+  .movie-card-buttons .btn {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.8rem;
+  }
+}
+/* BUTON GRUBU: Detay & Favori Ekle butonlarını kapsar */
+.movie-card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Daha büyük ve kullanışlı butonlar */
+.movie-card-buttons .btn {
+  flex: 1 1 auto;
+  min-width: 100px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+/* Mobilde de uyumlu */
+@media (max-width: 576px) {
+  .movie-card-buttons .btn {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.8rem;
+  }
+}
