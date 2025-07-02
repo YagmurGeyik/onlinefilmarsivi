@@ -20,7 +20,6 @@ function NavigationBar({ searchTerm, setSearchTerm }) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="outline-light">Ara</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
