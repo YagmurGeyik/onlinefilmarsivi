@@ -13,11 +13,27 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("Tümü");
+  const [theme, setTheme] = useState("light");
 
+  // Temayı ve favorileri localStorage'tan yükle
   useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) setTheme(savedTheme);
+
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(savedFavorites);
   }, []);
+
+  // Temayı <body>'ye uygula
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
 
   const handleAddFavorite = (movie) => {
     if (!favorites.some((fav) => fav.id === movie.id)) {
@@ -43,46 +59,53 @@ function App() {
   );
 
   return (
-    <BrowserRouter basename="/onlinefilmarsivi">
-      <NavigationBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <div className="container my-4">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <GenreFilter
-                  genres={genres}
-                  selectedGenre={selectedGenre}
-                  setSelectedGenre={setSelectedGenre}
-                />
-                <MovieList
-                  movies={filteredMovies}
+    <div className="app-wrapper">
+      <BrowserRouter basename="/onlinefilmarsivi">
+        <NavigationBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          toggleTheme={toggleTheme}
+          theme={theme}
+        />
+        <div className="container app-content my-4">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <GenreFilter
+                    genres={genres}
+                    selectedGenre={selectedGenre}
+                    setSelectedGenre={setSelectedGenre}
+                  />
+                  <MovieList
+                    movies={filteredMovies}
+                    handleAddFavorite={handleAddFavorite}
+                    handleRemoveFavorite={handleRemoveFavorite}
+                    favorites={favorites}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/movies/:id"
+              element={<MovieDetail movies={moviesData} />}
+            />
+            <Route
+              path="/favorites"
+              element={
+                <Favorite
+                  favorites={favorites}
                   handleAddFavorite={handleAddFavorite}
                   handleRemoveFavorite={handleRemoveFavorite}
-                  favorites={favorites}
                 />
-              </>
-            }
-          />
-          <Route
-            path="/movies/:id"
-            element={<MovieDetail movies={moviesData} />}
-          />
-          <Route
-            path="/favorites"
-            element={
-              <Favorite
-                favorites={favorites}
-                handleAddFavorite={handleAddFavorite}
-                handleRemoveFavorite={handleRemoveFavorite}
-              />
-            }
-          />
-        </Routes>
-      </div>
-      <Footer />
-    </BrowserRouter>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 

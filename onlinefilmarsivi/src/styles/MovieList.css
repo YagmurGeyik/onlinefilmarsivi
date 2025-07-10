@@ -5,17 +5,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fff;
   border-radius: 8px;
-  height: 100%; /* Kartın tam yükseklikte olmasını sağlar */
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Temaya özel background-color ve renk App.css’te tanımlanmalı */
+
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ffc107; /* opsiyonel: sarı çerçeve */
 }
 
 .movie-poster-container {
-  flex: 1; /* Poster alanının esnek olmasını sağlar */
+  flex: 1;
   display: flex;
   overflow: hidden;
 }
@@ -23,82 +30,17 @@
 .movie-poster {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Resmi kırparak alanı tam doldurur */
+  object-fit: cover;
+  object-position: center;
   background-color: #000;
+  aspect-ratio: 2/3;
 }
 
-/* Diğer stiller aynı kalabilir */
 .card-body {
   padding: 0.75rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-}
-
-/* Responsive ayarlar */
-@media (min-width: 576px) {
-  .movie-poster {
-    min-height: 180px;
-  }
-}
-
-@media (min-width: 768px) {
-  .movie-poster {
-    min-height: 220px;
-  }
-}
-
-@media (min-width: 992px) {
-  .movie-poster {
-    min-height: 280px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .movie-poster {
-    min-height: 320px;
-  }
-}
-
-@media (max-width: 575px) {
-  .movie-poster {
-    min-height: 150px;
-  }
-}
-/* Butonlar için responsive stiller */
-.btn-responsive {
-  padding: 0.25rem 4.1rem;
-  font-size: 0.75rem;
-  white-space: nowrap;
-}
-
-@media (min-width: 576px) {
-  .btn-responsive {
-    padding: 0.3rem 3.7rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .btn-responsive {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.875rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .btn-responsive {
-    padding: 0.4rem 4.1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Diğer stiller */
-.movie-poster {
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  aspect-ratio: 2/3;
 }
 
 .movie-title {
@@ -114,38 +56,36 @@
   font-size: 0.85rem;
   margin-bottom: 0.3rem;
 }
-.movie-card {
-  min-height: 100px;
-  min-width: 0;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fff;
-  border-radius: 8px;
-  height: 100%;
+
+.favorite-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 6px;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover efekti: kartı büyüt ve daha belirgin gölge ver */
-.movie-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  z-index: 10;
+.favorite-btn:hover {
+  background-color: #ff4d4d;
+  color: white;
+  transform: scale(1.1);
 }
-.movie-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ffc107; /* opsiyonel: sarı kenar çizgisi */
+
+.favorite-btn:focus {
+  outline: none;
 }
-/* BUTON GRUBU: Detay & Favori Ekle arası boşluk ve responsive tasarım */
+
+/* Butonlar */
 .movie-card-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem; /* Butonlar arasında boşluk */
+  gap: 0.5rem;
   margin-top: 0.6rem;
 }
 
@@ -158,20 +98,13 @@
   border-radius: 6px;
 }
 
-/* Mobil uyumlu ekstra ayarlar */
-@media (max-width: 576px) {
-  .movie-card-buttons .btn {
-    font-size: 0.85rem;
-    padding: 0.45rem 0.8rem;
-  }
-}
 .btn-detail {
   background-color: #007bff;
   color: white;
   border: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
   border-radius: 6px;
-  flex: 1 1 auto; /* <-- Önemli */
+  flex: 1 1 auto;
 }
 
 .btn-detail:hover {
@@ -179,59 +112,88 @@
   transform: scale(1.05);
 }
 
+/* Responsive ayarlar */
 @media (max-width: 576px) {
+  .movie-poster {
+    min-height: 150px;
+  }
+
+  .movie-card-buttons .btn,
   .btn-detail {
     font-size: 0.85rem;
     padding: 0.45rem 0.8rem;
   }
 }
 
+@media (min-width: 576px) {
+  .movie-poster {
+    min-height: 180px;
+  }
 
-/* Daha büyük ve kullanışlı butonlar */
-.movie-card-buttons .btn {
-  flex: 1 1 auto;
-  min-width: 100px;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  border-radius: 6px;
-}
-
-/* Mobilde de uyumlu */
-@media (max-width: 576px) {
-  .movie-card-buttons .btn {
-    font-size: 0.85rem;
-    padding: 0.45rem 0.8rem;
+  .btn-responsive {
+    padding: 0.3rem 3.7rem;
+    font-size: 0.8rem;
   }
 }
- .favorite-btn {
-  position: absolute;
-  top: 8px; /* Boş bırakılmış, düzeltildi */
-  right: 8px;
-  background-color: rgba(255, 255, 255, 0.8); /* Arka plan eklendi */
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  padding: 6px;
-  z-index: 2;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Gölgelendirme */
+
+@media (min-width: 768px) {
+  .movie-poster {
+    min-height: 220px;
+  }
+
+  .btn-responsive {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
 }
 
-.favorite-btn:hover {
-  background-color: #ff4d4d; /* Kırmızımsı ton hover'da */
-  color: white;
-  transform: scale(1.1);
+@media (min-width: 992px) {
+  .movie-poster {
+    min-height: 280px;
+  }
+
+  .btn-responsive {
+    padding: 0.4rem 4.1rem;
+    font-size: 0.9rem;
+  }
 }
 
-.favorite-btn:focus {
-  outline: none;
+@media (min-width: 1200px) {
+  .movie-poster {
+    min-height: 320px;
+  }
 }
-/* Sadece favoriler sayfasında geçerli */
+
+/* Favori sayfasındaki butonlar */
 .favorites .btn-detail {
   min-width: 100px;
   flex: 1 1 auto;
   font-size: 0.85rem;
   padding: 0.45rem 0.8rem;
 }
+/* Koyu tema aktifken kartlar da koyu olmalı */
+body.dark .movie-card {
+  background-color: #232323 !important;
+  color: #ffffff !important;
+}
 
+/* Açık tema için varsayılan */
+body.light .movie-card {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+body.dark .btn:hover {
+  background-color: #2a2a2a !important;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+body.dark .btn:active {
+  background-color: #3a3a3a !important;
+  transform: scale(0.98); /* minik basılma efekti */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
