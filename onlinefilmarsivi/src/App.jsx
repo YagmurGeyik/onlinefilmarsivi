@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import GenreFilter from "./components/GenreFilter";
 import NavigationBar from "./components/Navbar";
 import Favorite from "./components/Favorite";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +17,9 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState("Tümü");
   const [theme, setTheme] = useState("light");
 
-  // Temayı ve favorileri localStorage'tan yükle
+  const [currentPage, setCurrentPage] = useState(1);
+  const moviesPerPage = 12;
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) setTheme(savedTheme);
@@ -24,7 +28,6 @@ function App() {
     setFavorites(savedFavorites);
   }, []);
 
-  // Temayı <body>'ye uygula
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -58,6 +61,10 @@ function App() {
         movie.genre.toLowerCase().includes(selectedGenre.toLowerCase()))
   );
 
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie);
+
   return (
     <div className="app-wrapper">
       <BrowserRouter basename="/onlinefilmarsivi">
@@ -73,16 +80,28 @@ function App() {
               path="/"
               element={
                 <>
-                  <GenreFilter
-                    genres={genres}
-                    selectedGenre={selectedGenre}
-                    setSelectedGenre={setSelectedGenre}
-                  />
-                  <MovieList
-                    movies={filteredMovies}
-                    handleAddFavorite={handleAddFavorite}
-                    handleRemoveFavorite={handleRemoveFavorite}
-                    favorites={favorites}
+                  <div className="d-flex gap-3">
+                    <div style={{ minWidth: "220px" }}>
+                      <GenreFilter
+                        genres={genres}
+                        selectedGenre={selectedGenre}
+                        setSelectedGenre={setSelectedGenre}
+                      />
+                    </div>
+                    <div className="flex-grow-1">
+                      <MovieList
+                        movies={currentMovies}
+                        handleAddFavorite={handleAddFavorite}
+                        handleRemoveFavorite={handleRemoveFavorite}
+                        favorites={favorites}
+                      />
+                    </div>
+                  </div>
+                  <Pagination
+                    totalMovies={filteredMovies.length}
+                    moviesPerPage={moviesPerPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                   />
                 </>
               }
@@ -103,6 +122,7 @@ function App() {
             />
           </Routes>
         </div>
+        <ScrollToTopButton />
         <Footer />
       </BrowserRouter>
     </div>

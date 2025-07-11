@@ -1,29 +1,83 @@
-.genre-filter {
+/* Ortak stiller */
+.genre-sidebar {
+  width: 230px;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+  margin-left: -50px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.genre-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .genre-button {
-  border: 1px solid #ccc;
-  background-color: #f8f9fa;
-  padding: 0.4rem 0.8rem;
+  border: none;
+  padding: 0.6rem 1rem;
   font-size: 0.9rem;
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
+  text-align: left;
   transition: background-color 0.2s ease, color 0.2s ease;
-  white-space: nowrap;
-}
-
-.genre-button:hover {
-  background-color: #e9ecef;
   cursor: pointer;
 }
 
-.genre-button.active {
-  background-color: #343a40;
+/* Dark mode */
+body.dark .genre-sidebar {
+  background-color: #1f1f1f;
   color: white;
-  font-weight: 500;
-  border: 1px solid #343a40;
+  border-right: 1px solid #333;
+}
+
+body.dark .genre-button {
+  background-color: #111;
+  color: white;
+}
+
+body.dark .genre-button:hover {
+  background-color: #333;
+}
+
+body.dark .genre-button.active {
+  background-color: #f1c40f;
+  color: #000;
+  font-weight: bold;
+}
+
+body.dark .sidebar-title {
+  color: #fff;
+}
+
+/* Light mode */
+body.light .genre-sidebar {
+  background-color: #f9f9f9;
+  color: #333;
+  border-right: 1px solid #ccc;
+}
+
+body.light .genre-button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+body.light .genre-button:hover {
+  background-color: #eee;
+}
+
+body.light .genre-button.active {
+  background-color: #f1c40f;
+  color: #000;
+  font-weight: bold;
+}
+
+body.light .sidebar-title {
+  color: #222;
 }

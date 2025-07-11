@@ -153,7 +153,7 @@
   }
 
   .btn-responsive {
-    padding: 0.4rem 4.1rem;
+    padding: 0.4rem 5.2rem;
     font-size: 0.9rem;
   }
 }
@@ -196,4 +196,33 @@ body.dark .btn:active {
 body.dark .btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+.text-center h5 {
+  color: #888;
+}
+.movie-list-container {
+  padding: 1rem;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 1000px; /* daha dar yapıyoruz */
+  margin: 0 auto;
+}
+
+
+.movie-item .movie-card {
+  font-size: 0.85rem;
+}
+
+.movie-title {
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.movie-info {
+  font-size: 0.75rem;
 }
