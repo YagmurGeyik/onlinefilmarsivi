@@ -10,6 +10,7 @@ import NavigationBar from "./components/Navbar";
 import Favorite from "./components/Favorite";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Pagination from "./components/Pagination";
+import BottomNav from "./components/BottomNav";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,6 +21,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const moviesPerPage = 12;
 
+  // LocalStorage'dan tema ve favorileri yükle
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) setTheme(savedTheme);
@@ -28,16 +30,19 @@ function App() {
     setFavorites(savedFavorites);
   }, []);
 
+  // Temayı body'e uygula
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
+  // Tema değiştir
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
 
+  // Favorilere ekle/çıkar
   const handleAddFavorite = (movie) => {
     if (!favorites.some((fav) => fav.id === movie.id)) {
       const updatedFavorites = [...favorites, movie];
@@ -52,6 +57,7 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
+  // Filtreleme
   const genres = [...new Set(moviesData.map((movie) => movie.genre))];
 
   const filteredMovies = moviesData.filter(
@@ -65,6 +71,14 @@ function App() {
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie);
 
+  // Filtre panelini aç/kapat
+  const toggleFilter = () => {
+    const filterSidebar = document.querySelector(".genre-filter");
+    if (filterSidebar) {
+      filterSidebar.classList.toggle("show-mobile-filter");
+    }
+  };
+
   return (
     <div className="app-wrapper">
       <BrowserRouter basename="/onlinefilmarsivi">
@@ -74,6 +88,7 @@ function App() {
           toggleTheme={toggleTheme}
           theme={theme}
         />
+
         <div className="container app-content my-4">
           <Routes>
             <Route
@@ -81,11 +96,12 @@ function App() {
               element={
                 <>
                   <div className="d-flex gap-3">
-                    <div style={{ minWidth: "220px" }}>
+                    <div className="genre-filter" style={{ minWidth: "220px" }}>
                       <GenreFilter
                         genres={genres}
                         selectedGenre={selectedGenre}
                         setSelectedGenre={setSelectedGenre}
+                        toggleFilter={toggleFilter} // Mobil filtre kapansın
                       />
                     </div>
                     <div className="flex-grow-1">
@@ -97,6 +113,7 @@ function App() {
                       />
                     </div>
                   </div>
+
                   <Pagination
                     totalMovies={filteredMovies.length}
                     moviesPerPage={moviesPerPage}
@@ -106,10 +123,12 @@ function App() {
                 </>
               }
             />
+
             <Route
               path="/movies/:id"
               element={<MovieDetail movies={moviesData} />}
             />
+
             <Route
               path="/favorites"
               element={
@@ -122,7 +141,11 @@ function App() {
             />
           </Routes>
         </div>
+
         <ScrollToTopButton />
+
+        <BottomNav toggleFilter={toggleFilter} />
+
         <Footer />
       </BrowserRouter>
     </div>

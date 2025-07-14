@@ -137,7 +137,7 @@ body, .light {
 body.dark .pagination {
   background-color: #1e1e1e;  /* Pagination arka planı */
   padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  border-radius: 0.30rem;
 }
 
 body.dark .pagination .page-link {

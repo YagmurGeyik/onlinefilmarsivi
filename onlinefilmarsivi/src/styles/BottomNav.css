@@ -1,0 +1,33 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #212121;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  border-top: 1px solid #444;
+  z-index: 1000;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  flex: 1;
+}
+
+.bottom-nav-item:hover {
+  background-color: #333;
+  color: #ffc107;
+}
+button.bottom-nav-item {
+  border: none;
+  background: none;
+  padding: 0;
+  outline: none;
+}

@@ -1,9 +1,39 @@
+@media (max-width: 768px) {
+  .genre-filter {
+    display: none;
+  }
+
+  .genre-filter.show-mobile-filter {
+    display: block;
+    position: fixed; /* absolute yerine fixed olmalı */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* tüm ekranı kapla */
+    background-color: #1e1e1e;
+    z-index: 9999;
+    padding: 2rem 1rem 1rem 1rem;
+    overflow-y: auto;
+  }
+}
+
+/* Filtre kapatma butonu */
+.mobile-filter-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  background: none;
+  border: none;
+  z-index: 10000;
+}
 /* Ortak stiller */
 .genre-sidebar {
   width: 230px;
   padding: 1rem;
   border-right: 1px solid #ddd;
-  margin-left: -50px;
+  /*margin-left: -50px;*/
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -80,4 +110,21 @@ body.light .genre-button.active {
 
 body.light .sidebar-title {
   color: #222;
+}
+/* Tema light ise siyah, dark ise beyaz ikon */
+body.light .mobile-filter-close {
+  color: #000000;
+}
+
+body.dark .mobile-filter-close {
+  color: #ffffff;
+}
+
+/* İkonun görünümünü biraz daha düzenlemek için */
+.mobile-filter-close {
+  font-size: 24px; /* Gerekirse boyut değiştirebilirsin */
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
 }

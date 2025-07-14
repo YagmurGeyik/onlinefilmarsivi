@@ -212,6 +212,15 @@ body.dark .btn:focus {
   max-width: 1000px; /* daha dar yapıyoruz */
   margin: 0 auto;
 }
+/* .movie-grid kısmının altına ekle */
+@media (max-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr); /* her satıra 2 film */
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+}
+
 
 
 .movie-item .movie-card {
