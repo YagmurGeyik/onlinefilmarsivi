@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "../styles/MovieList.css";
@@ -9,7 +9,19 @@ function MovieList({
   handleRemoveFavorite,
   favorites,
 }) {
+  const [sortOrder, setSortOrder] = useState("desc");
+
   const isFavorite = (movie) => favorites.some((fav) => fav.id === movie.id);
+
+  const sortedMovies = useMemo(() => {
+    return [...movies].sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.imdbRating - b.imdbRating;
+      } else {
+        return b.imdbRating - a.imdbRating;
+      }
+    });
+  }, [movies, sortOrder]);
 
   if (movies.length === 0) {
     return (
@@ -21,8 +33,21 @@ function MovieList({
 
   return (
     <div className="movie-list-container">
+      {/* Sıralama dropdown'u */}
+      <div className="d-flex justify-content-end mb-3 me-2">
+        <select
+          className="form-select w-auto"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="desc">IMDb: Yüksekten Düşüğe</option>
+          <option value="asc">IMDb: Düşükten Yükseğe</option>
+        </select>
+      </div>
+
+      {/* Film kartları */}
       <div className="movie-grid">
-        {movies.map((movie) => (
+        {sortedMovies.map((movie) => (
           <div key={movie.id} className="movie-item">
             <div className="card h-100 movie-card position-relative">
               <img

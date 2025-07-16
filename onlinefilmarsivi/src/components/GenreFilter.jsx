@@ -9,8 +9,8 @@ function GenreFilter({ genres, selectedGenre, setSelectedGenre, toggleFilter }) 
       setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize(); // ilk yüklemede çağır
-    window.addEventListener("resize", handleResize); // pencere boyutu değişirse
+    handleResize(); 
+    window.addEventListener("resize", handleResize); 
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);

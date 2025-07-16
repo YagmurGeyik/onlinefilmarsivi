@@ -17,11 +17,19 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("Tümü");
   const [theme, setTheme] = useState("light");
-
   const [currentPage, setCurrentPage] = useState(1);
   const moviesPerPage = 12;
 
-  // LocalStorage'dan tema ve favorileri yükle
+  const genreList = [
+    "Aile Filmleri", "Aksiyon Filmleri", "Animasyon Filmleri", "Belgesel Filmleri",
+    "Bilim Kurgu Filmleri", "Biyografi Filmleri", "Dram Filmleri", "Fantastik Filmleri",
+    "Film-Noir Filmleri", "Game-Show Filmleri", "Gerilim Filmleri", "Gizem Filmleri",
+    "Komedi Filmleri", "Korku Filmleri", "Macera Filmleri", "Müzik Filmleri",
+    "Polisiye Filmleri", "Reality Filmleri", "Reality-TV Filmleri", "Romantik Filmleri",
+    "Savaş Filmleri", "Science Fiction Filmleri", "Short Filmleri", "Spor Filmleri",
+    "Suç Filmleri", "Tarih Filmleri", "TV Movie Filmleri", "Western Filmleri"
+  ];
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) setTheme(savedTheme);
@@ -30,19 +38,16 @@ function App() {
     setFavorites(savedFavorites);
   }, []);
 
-  // Temayı body'e uygula
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
-  // Tema değiştir
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
 
-  // Favorilere ekle/çıkar
   const handleAddFavorite = (movie) => {
     if (!favorites.some((fav) => fav.id === movie.id)) {
       const updatedFavorites = [...favorites, movie];
@@ -57,21 +62,22 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  // Filtreleme
-  const genres = [...new Set(moviesData.map((movie) => movie.genre))];
+  // Filtreleme: Çoklu tür eşleşmesi
+  const filteredMovies = moviesData.filter((movie) => {
+    const titleMatch = movie.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const genreArray = movie.genre.split(",").map((g) => g.trim().toLowerCase());
 
-  const filteredMovies = moviesData.filter(
-    (movie) =>
-      movie.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedGenre === "Tümü" ||
-        movie.genre.toLowerCase().includes(selectedGenre.toLowerCase()))
-  );
+    const genreMatch =
+      selectedGenre === "Tümü" ||
+      genreArray.some((g) => selectedGenre.toLowerCase().includes(g) || g.includes(selectedGenre.toLowerCase()));
+
+    return titleMatch && genreMatch;
+  });
 
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie);
 
-  // Filtre panelini aç/kapat
   const toggleFilter = () => {
     const filterSidebar = document.querySelector(".genre-filter");
     if (filterSidebar) {
@@ -98,10 +104,10 @@ function App() {
                   <div className="d-flex gap-3">
                     <div className="genre-filter" style={{ minWidth: "220px" }}>
                       <GenreFilter
-                        genres={genres}
+                        genres={genreList}
                         selectedGenre={selectedGenre}
                         setSelectedGenre={setSelectedGenre}
-                        toggleFilter={toggleFilter} // Mobil filtre kapansın
+                        toggleFilter={toggleFilter}
                       />
                     </div>
                     <div className="flex-grow-1">
@@ -123,12 +129,10 @@ function App() {
                 </>
               }
             />
-
             <Route
               path="/movies/:id"
               element={<MovieDetail movies={moviesData} />}
             />
-
             <Route
               path="/favorites"
               element={
@@ -143,9 +147,7 @@ function App() {
         </div>
 
         <ScrollToTopButton />
-
         <BottomNav toggleFilter={toggleFilter} />
-
         <Footer />
       </BrowserRouter>
     </div>
