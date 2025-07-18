@@ -171,4 +171,10 @@ body.dark .pagination .page-item.active .page-link {
   flex: 1;
   padding: 1rem;
 }
+/* iPad Air / Pro gibi cihazlarda navbar linklerini gizle */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .my-navbar .nav-link {
+    display: none;
+  }
+}
 

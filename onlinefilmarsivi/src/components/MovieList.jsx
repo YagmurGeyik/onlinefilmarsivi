@@ -33,7 +33,6 @@ function MovieList({
 
   return (
     <div className="movie-list-container">
-      {/* Sıralama dropdown'u */}
       <div className="d-flex justify-content-end mb-3 me-2">
         <select
           className="form-select w-auto"
@@ -45,7 +44,6 @@ function MovieList({
         </select>
       </div>
 
-      {/* Film kartları */}
       <div className="movie-grid">
         {sortedMovies.map((movie) => (
           <div key={movie.id} className="movie-item">

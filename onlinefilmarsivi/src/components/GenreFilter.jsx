@@ -6,7 +6,7 @@ function GenreFilter({ genres, selectedGenre, setSelectedGenre, toggleFilter }) 
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
     };
 
     handleResize(); 
