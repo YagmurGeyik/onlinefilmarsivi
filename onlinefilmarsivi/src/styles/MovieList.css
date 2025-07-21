@@ -13,12 +13,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Temaya özel background-color ve renk App.css’te tanımlanmalı */
-
 .movie-card:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ffc107; /* opsiyonel: sarı çerçeve */
+  border: 1px solid #ffc107; 
 }
 
 .movie-poster-container {
@@ -209,19 +207,17 @@ body.dark .btn:focus {
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   justify-content: center;
-  max-width: 1000px; /* daha dar yapıyoruz */
+  max-width: 1000px; 
   margin: 0 auto;
 }
-/* .movie-grid kısmının altına ekle */
+
 @media (max-width: 768px) {
   .movie-grid {
-    grid-template-columns: repeat(2, 1fr); /* her satıra 2 film */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 1rem;
     padding: 0 0.5rem;
   }
 }
-
-
 
 .movie-item .movie-card {
   font-size: 0.85rem;
@@ -249,7 +245,6 @@ body.dark .btn:focus {
     padding: 0.5rem 1rem !important;
   }
 
-  /* btn-sm etkisini iptal et */
   .btn-sm.btn-responsive {
     padding: 0.4rem 2.5rem !important;
     font-size: 0.95rem !important;
