@@ -4,22 +4,19 @@ import { Link } from 'react-router-dom';
 import { BsSun, BsMoon, BsSearch } from 'react-icons/bs';
 import "../styles/index.css";
 
-function NavigationBar({ searchTerm, setSearchTerm, toggleTheme, theme }) {
+function NavigationBar({ searchTerm, setSearchTerm, toggleTheme, theme, onLoginClick, onRegisterClick }) {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
     <Navbar className="my-navbar" expand="lg">
       <Container className="d-flex justify-content-between align-items-center">
-        {/* Logo */}
         <Navbar.Brand as={Link} to="/" className="me-3">CineLİST</Navbar.Brand>
 
-        {/* Sayfa linkleri */}
         <Nav className="d-none d-lg-flex me-auto">
           <Nav.Link as={Link} to="/">Anasayfa</Nav.Link>
           <Nav.Link as={Link} to="/favorites">Favoriler</Nav.Link>
         </Nav>
 
-        {/* Arama çubuğu */}
         {showSearch && (
           <Form className="d-flex align-items-center search-form me-2">
             <FormControl
@@ -33,10 +30,9 @@ function NavigationBar({ searchTerm, setSearchTerm, toggleTheme, theme }) {
           </Form>
         )}
 
-        {/* Butonlar */}
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center gap-2">
           <button
-            className="btn btn-outline-light me-2"
+            className="btn btn-outline-light"
             onClick={() => setShowSearch(!showSearch)}
             title="Ara"
           >
@@ -50,6 +46,10 @@ function NavigationBar({ searchTerm, setSearchTerm, toggleTheme, theme }) {
           >
             {theme === "light" ? <BsMoon size={20} /> : <BsSun size={20} />}
           </button>
+
+          {/* Giriş ve Kayıt bağlantıları butona çevrildi */}
+          <button className="btn btn-outline-light ms-2" onClick={onLoginClick}>Giriş Yap</button>
+          <button className="btn btn-light ms-2" onClick={onRegisterClick}>Kayıt Ol</button>
         </div>
       </Container>
     </Navbar>

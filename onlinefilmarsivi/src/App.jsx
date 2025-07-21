@@ -11,6 +11,8 @@ import Favorite from "./components/Favorite";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Pagination from "./components/Pagination";
 import BottomNav from "./components/BottomNav";
+import LoginModal from "./components/LoginModal";
+import RegisterModal from "./components/RegisterModal";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,16 +20,40 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState("Tümü");
   const [theme, setTheme] = useState("light");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+
   const moviesPerPage = 12;
 
   const genreList = [
-    "Aile Filmleri", "Aksiyon Filmleri", "Animasyon Filmleri", "Belgesel Filmleri",
-    "Bilim Kurgu Filmleri", "Biyografi Filmleri", "Dram Filmleri", "Fantastik Filmleri",
-    "Film-Noir Filmleri", "Game-Show Filmleri", "Gerilim Filmleri", "Gizem Filmleri",
-    "Komedi Filmleri", "Korku Filmleri", "Macera Filmleri", "Müzik Filmleri",
-    "Polisiye Filmleri", "Reality Filmleri", "Reality-TV Filmleri", "Romantik Filmleri",
-    "Savaş Filmleri", "Science Fiction Filmleri", "Short Filmleri", "Spor Filmleri",
-    "Suç Filmleri", "Tarih Filmleri", "TV Movie Filmleri", "Western Filmleri"
+    "Aile Filmleri",
+    "Aksiyon Filmleri",
+    "Animasyon Filmleri",
+    "Belgesel Filmleri",
+    "Bilim Kurgu Filmleri",
+    "Biyografi Filmleri",
+    "Dram Filmleri",
+    "Fantastik Filmleri",
+    "Film-Noir Filmleri",
+    "Game-Show Filmleri",
+    "Gerilim Filmleri",
+    "Gizem Filmleri",
+    "Komedi Filmleri",
+    "Korku Filmleri",
+    "Macera Filmleri",
+    "Müzik Filmleri",
+    "Polisiye Filmleri",
+    "Reality Filmleri",
+    "Reality-TV Filmleri",
+    "Romantik Filmleri",
+    "Savaş Filmleri",
+    "Science Fiction Filmleri",
+    "Short Filmleri",
+    "Spor Filmleri",
+    "Suç Filmleri",
+    "Tarih Filmleri",
+    "TV Movie Filmleri",
+    "Western Filmleri",
   ];
 
   useEffect(() => {
@@ -62,21 +88,31 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
-  // Filtreleme: Çoklu tür eşleşmesi
   const filteredMovies = moviesData.filter((movie) => {
-    const titleMatch = movie.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const genreArray = movie.genre.split(",").map((g) => g.trim().toLowerCase());
+    const titleMatch = movie.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const genreArray = movie.genre
+      .split(",")
+      .map((g) => g.trim().toLowerCase());
 
     const genreMatch =
       selectedGenre === "Tümü" ||
-      genreArray.some((g) => selectedGenre.toLowerCase().includes(g) || g.includes(selectedGenre.toLowerCase()));
+      genreArray.some(
+        (g) =>
+          selectedGenre.toLowerCase().includes(g) ||
+          g.includes(selectedGenre.toLowerCase())
+      );
 
     return titleMatch && genreMatch;
   });
 
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie);
+  const currentMovies = filteredMovies.slice(
+    indexOfFirstMovie,
+    indexOfLastMovie
+  );
 
   const toggleFilter = () => {
     const filterSidebar = document.querySelector(".genre-filter");
@@ -93,6 +129,8 @@ function App() {
           setSearchTerm={setSearchTerm}
           toggleTheme={toggleTheme}
           theme={theme}
+          onLoginClick={() => setShowLoginModal(true)}
+          onRegisterClick={() => setShowRegisterModal(true)}
         />
 
         <div className="container app-content my-4">
@@ -145,6 +183,19 @@ function App() {
             />
           </Routes>
         </div>
+
+        {showLoginModal && (
+          <LoginModal
+            onClose={() => setShowLoginModal(false)}
+            onSwitchToRegister={() => {
+              setShowLoginModal(false);
+              setShowRegisterModal(true);
+            }}
+          />
+        )}
+        {showRegisterModal && (
+          <RegisterModal onClose={() => setShowRegisterModal(false)} />
+        )}
 
         <ScrollToTopButton />
         <BottomNav toggleFilter={toggleFilter} />

@@ -703,50 +703,61 @@ const movies = [
     ],
   },
   {
-    id: 34,
-    title: "The Handmaiden",
-    year: 2016,
-    rating: 8.1,
-    genre: "Dram, Romantik, Gerilim",
-    country: "Güney Kore",
-    duration: "145 dk",
-    description:
-      "1930'larda Japon işgali altındaki Kore'de geçen bu hikâyede, genç bir hizmetçi zengin bir Japon varisine yardım ederken karmaşık bir dolandırıcılık planına karışır. Ancak ikili arasında gelişen ilişki, olayların seyrini tamamen değiştirir.",
-    poster: handmaiden,
-    director: "Park Chan-wook",
-    cast: "Kim Min-hee, Ha Jung-woo, Kim Tae-ri",
-  },
-
-  {
-    id: 35,
-    title: "The Lives of Others",
-    year: 2006,
-    rating: 8.4,
-    genre: "Dram, Gerilim",
-    country: "Almanya",
-    duration: "137 dk",
-    description:
-      "1984 Doğu Almanya’sında, bir Stasi ajanı bir yazar ve sevgilisini gözetlemekle görevlendirilir. Ancak zamanla, onların hayatı onun üzerinde beklenmedik duygusal etkiler bırakır. Film, bireylerin baskı altındaki yaşamlarını derinlemesine inceler.",
-    poster: livesofothers,
-    director: "Florian Henckel von Donnersmarck",
-    cast: "Ulrich Mühe, Martina Gedeck, Sebastian Koch",
-  },
-  {
-    id: 36,
-    title: "Children of Men",
-    year: 2006,
-    rating: 7.9,
-    genre: "Aksiyon, Bilim Kurgu, Dram",
-    country: "İngiltere",
-    duration: "109 dk",
-    description:
-      "Gelecekteki distopik bir dünyada insanlık doğurganlığını kaybetmiştir. Umutsuzluk içindeki bu toplumda, hamile bir kadın insanlığın kaderini değiştirme umudu olarak ortaya çıkar. Film, çarpıcı atmosferiyle dikkat çeker.",
-    poster: childrenofmen,
-    director: "Alfonso Cuarón",
-    cast: "Clive Owen, Julianne Moore, Chiwetel Ejiofor",
-  },
-  {
-    id: 37,
+  id: 34,
+  title: "The Handmaiden",
+  year: 2016,
+  imdbRating: 8.1,
+  genre: "Dram, Romantik, Gerilim",
+  country: "Güney Kore",
+  duration: "145 dk",
+  description:
+    "1930'larda Japon işgali altındaki Kore'de geçen bu hikâyede, genç bir hizmetçi zengin bir Japon varisine yardım ederken karmaşık bir dolandırıcılık planına karışır. Ancak ikili arasında gelişen ilişki, olayların seyrini tamamen değiştirir.",
+  poster: handmaiden,
+  director: "Park Chan-wook",
+  cast: [
+    "Kim Min-hee",
+    "Ha Jung-woo",
+    "Kim Tae-ri"
+  ],
+},
+{
+  id: 35,
+  title: "The Lives of Others",
+  year: 2006,
+  imdbRating: 8.4,
+  genre: "Dram, Gerilim",
+  country: "Almanya",
+  duration: "137 dk",
+  description:
+    "1984 Doğu Almanya’sında, bir Stasi ajanı bir yazar ve sevgilisini gözetlemekle görevlendirilir. Ancak zamanla, onların hayatı onun üzerinde beklenmedik duygusal etkiler bırakır. Film, bireylerin baskı altındaki yaşamlarını derinlemesine inceler.",
+  poster: livesofothers,
+  director: "Florian Henckel von Donnersmarck",
+  cast: [
+    "Ulrich Mühe",
+    "Martina Gedeck",
+    "Sebastian Koch"
+  ],
+},
+{
+  id: 36,
+  title: "Children of Men",
+  year: 2006,
+  imdbRating: 7.9,
+  genre: "Aksiyon, Bilim Kurgu, Dram",
+  country: "İngiltere",
+  duration: "109 dk",
+  description:
+    "Gelecekteki distopik bir dünyada insanlık doğurganlığını kaybetmiştir. Umutsuzluk içindeki bu toplumda, hamile bir kadın insanlığın kaderini değiştirme umudu olarak ortaya çıkar. Film, çarpıcı atmosferiyle dikkat çeker.",
+  poster: childrenofmen,
+  director: "Alfonso Cuarón",
+  cast: [
+    "Clive Owen",
+    "Julianne Moore",
+    "Chiwetel Ejiofor"
+  ],
+},
+{
+  id: 37,
   title: "Amélie",
   year: 2001,
   imdbRating: 8.3,
@@ -762,24 +773,28 @@ const movies = [
     "Mathieu Kassovitz",
     "Rufus",
     "Serge Merlin",
-    "Yolande Moreau",
+    "Yolande Moreau"
   ],
 },
-  {
-    id: 38,
-    title: "Enemy",
-    year: 2013,
-    rating: 6.9,
-    genre: "Gerilim, Gizem, Dram",
-    country: "Kanada",
-    duration: "91 dk",
-    description:
-      "Bir üniversite profesörü, bir film izledikten sonra kendisine tıpatıp benzeyen bir adamın varlığını keşfeder. Bu keşif, onun hayatında geri dönülmez bir psikolojik çatışmayı başlatır. Film, bilinçaltı korkularla yüzleşmeyi konu alır.",
-    poster: enemy,
-    director: "Denis Villeneuve",
-    cast: "Jake Gyllenhaal, Mélanie Laurent, Sarah Gadon",
-  },
-  {
+{
+  id: 38,
+  title: "Enemy",
+  year: 2013,
+  imdbRating: 6.9,
+  genre: "Gerilim, Gizem, Dram",
+  country: "Kanada",
+  duration: "91 dk",
+  description:
+    "Bir üniversite profesörü, bir film izledikten sonra kendisine tıpatıp benzeyen bir adamın varlığını keşfeder. Bu keşif, onun hayatında geri dönülmez bir psikolojik çatışmayı başlatır. Film, bilinçaltı korkularla yüzleşmeyi konu alır.",
+  poster: enemy,
+  director: "Denis Villeneuve",
+  cast: [
+    "Jake Gyllenhaal",
+    "Mélanie Laurent",
+    "Sarah Gadon"
+  ],
+},
+{
   id: 39,
   title: "Nightcrawler",
   year: 2014,
@@ -796,51 +811,63 @@ const movies = [
     "Rene Russo",
     "Riz Ahmed",
     "Bill Paxton",
-    "Ann Cusack",
+    "Ann Cusack"
   ],
 },
-  {
-    id: 40,
-    title: "The Secret in Their Eyes",
-    year: 2009,
-    rating: 8.2,
-    genre: "Suç, Dram, Gizem",
-    country: "Arjantin",
-    duration: "129 dk",
-    description:
-      "Emekli bir müfettiş, yıllar önce çözülemeyen bir cinayet vakasını yeniden araştırmaya karar verir. Bu süreçte geçmişte yaşanan olaylar ve kayıp bir aşk yeniden gün yüzüne çıkar. Film, hafıza ve adalet temasını ustaca işler.",
-    poster: secretintheireyes,
-    director: "Juan José Campanella",
-    cast: "Ricardo Darín, Soledad Villamil, Pablo Rago",
-  },
-  {
-    id: 41,
-    title: "Pan's Labyrinth",
-    year: 2006,
-    rating: 8.2,
-    genre: "Dram, Fantastik, Savaş",
-    country: "İspanya",
-    duration: "118 dk",
-    description:
-      "1944 yılında İspanya’da geçen bu masalsı hikâyede, küçük bir kız acımasız gerçeklerden kaçmak için gizemli bir labirente sığınır. Film, fantastik ögelerle tarihi gerçeklik arasında etkileyici bir denge kurar.",
-    poster: panslabyrinth,
-    director: "Guillermo del Toro",
-    cast: "Ivana Baquero, Sergi López, Maribel Verdú",
-  },
-  {
-    id: 42,
-    title: "The Man from Earth",
-    year: 2007,
-    rating: 7.9,
-    genre: "Dram, Bilim Kurgu",
-    country: "ABD",
-    duration: "87 dk",
-    description:
-      "Bir üniversite profesörü, emeklilik partisi sırasında arkadaşlarına 14.000 yıldır yaşadığını iddia eder. Bu iddia, odadaki herkesin inançlarını ve bilgi sınırlarını zorlayan felsefi bir tartışmaya dönüşür.",
-    poster: manfromearth,
-    director: "Richard Schenkman",
-    cast: "David Lee Smith, Tony Todd, John Billingsley",
-  },
-];
+{
+  id: 40,
+  title: "The Secret in Their Eyes",
+  year: 2009,
+  imdbRating: 8.2,
+  genre: "Suç, Dram, Gizem",
+  country: "Arjantin",
+  duration: "129 dk",
+  description:
+    "Emekli bir müfettiş, yıllar önce çözülemeyen bir cinayet vakasını yeniden araştırmaya karar verir. Bu süreçte geçmişte yaşanan olaylar ve kayıp bir aşk yeniden gün yüzüne çıkar. Film, hafıza ve adalet temasını ustaca işler.",
+  poster: secretintheireyes,
+  director: "Juan José Campanella",
+  cast: [
+    "Ricardo Darín",
+    "Soledad Villamil",
+    "Pablo Rago"
+  ],
+},
+{
+  id: 41,
+  title: "Pan's Labyrinth",
+  year: 2006,
+  imdbRating: 8.2,
+  genre: "Dram, Fantastik, Savaş",
+  country: "İspanya",
+  duration: "118 dk",
+  description:
+    "1944 yılında İspanya’da geçen bu masalsı hikâyede, küçük bir kız acımasız gerçeklerden kaçmak için gizemli bir labirente sığınır. Film, fantastik ögelerle tarihi gerçeklik arasında etkileyici bir denge kurar.",
+  poster: panslabyrinth,
+  director: "Guillermo del Toro",
+  cast: [
+    "Ivana Baquero",
+    "Sergi López",
+    "Maribel Verdú"
+  ],
+},
+{
+  id: 42,
+  title: "The Man from Earth",
+  year: 2007,
+  imdbRating: 7.9,
+  genre: "Dram, Bilim Kurgu",
+  country: "ABD",
+  duration: "87 dk",
+  description:
+    "Bir üniversite profesörü, emeklilik partisi sırasında arkadaşlarına 14.000 yıldır yaşadığını iddia eder. Bu iddia, odadaki herkesin inançlarını ve bilgi sınırlarını zorlayan felsefi bir tartışmaya dönüşür.",
+  poster: manfromearth,
+  director: "Richard Schenkman",
+  cast: [
+    "David Lee Smith",
+    "Tony Todd",
+    "John Billingsley"
+  ],
+},
+]
 
 export default movies;
